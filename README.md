@@ -2,13 +2,15 @@
 
 ## My Notes, Programming Exercises and Projects
 
-1.
+1. [K and R](/knr)
 
 ## Learning Resource
 
 ### Books
 
-[K and R](https://a.co/d/esSTpN1)
+1. [K and R](https://a.co/d/esSTpN1)
+
+2. [Pointers on C](https://a.co/d/7ALKmDj)
 
 ### Youtube Videos
 
