@@ -2,7 +2,7 @@
 
 ## My Notes, Programming Exercises and Projects
 
-1. [K and R](/knr)
+1. [K and R](/knr/knr.md)
 
 ## Learning Resource
 
