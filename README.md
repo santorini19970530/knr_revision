@@ -45,6 +45,14 @@ A comprehensive study guide and implementation of "The C Programming Language" b
 - **[Notes](knr/chapter08.md)** - Low-level I/O, file descriptors, memory allocation
 - **[Exercises](knr/chapter08/)** - System programming, memory allocator implementations
 
+### Appendix A - Reference Manual
+- **[Notes](knr/appendix_a.md)** - Complete C language reference, syntax, grammar
+- **[Exercises](knr/appendix_a/)** - Lexical analyzer, preprocessor, type checker
+
+### Appendix B - Standard Library
+- **[Notes](knr/appendix_b.md)** - Complete standard library reference, functions, headers
+- **[Exercises](knr/appendix_b/)** - Library implementations, utilities, tools
+
 ## 🛠️ Project Structure
 
 ```
@@ -57,7 +65,9 @@ knr_review/
 │   ├── chapter05.md + chapter05/     # Pointers and Arrays
 │   ├── chapter06.md + chapter06/     # Structures
 │   ├── chapter07.md + chapter07/     # Input and Output
-│   └── chapter08.md + chapter08/     # UNIX System Interface
+│   ├── chapter08.md + chapter08/     # UNIX System Interface
+│   ├── appendix_a.md + appendix_a/   # Reference Manual
+│   └── appendix_b.md + appendix_b/   # Standard Library
 ├── knr.pdf                          # Original book PDF
 ├── knr_text.txt                     # Converted text version
 └── .gitignore                       # Git ignore rules
