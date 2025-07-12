@@ -1,6 +1,6 @@
 # K and R Study Repo
 
-[Book Copy](/knr/knr.md)
+[Book Copy](knr.pdf)
 
 [Buy on Amazon](https://a.co/d/esSTpN1)
 
