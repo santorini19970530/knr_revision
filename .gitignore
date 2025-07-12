@@ -7,4 +7,9 @@
 ehthumbs.db
 Thumbs.db
 
+# Workspace files
+*.code-workspace
+.vscode/
+.idea/
+
 knr_text.txt 

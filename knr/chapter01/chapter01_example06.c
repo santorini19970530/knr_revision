@@ -1,5 +1,7 @@
 #include<stdio.h>
 
+// symbolic constants or symbolic names
+
 #define LOWER 0 /* lower limit of temperature table */
 #define UPPER 300    /* upper limit */
 #define STEP 20  /* step size */

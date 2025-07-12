@@ -39,6 +39,7 @@
 - Automatically terminated with '\0'
 
 ### Enumeration Constants:
+- [Example 2.1 - Enumeration constants](./chapter02/chapter02_example01.c)
 ```c
 enum boolean { NO, YES };
 enum escapes { BELL = '\a', BACKSPACE = '\b', TAB = '\t' };
@@ -47,12 +48,14 @@ enum escapes { BELL = '\a', BACKSPACE = '\b', TAB = '\t' };
 ## 2.4 Declarations
 
 ### Variable Declarations:
+- [Example 2.2 - Variable declarations](./chapter02/chapter02_example02.c)
 ```c
 int lower, upper, step;
 char c, line[1000];
 ```
 
 ### Function Declarations:
+- [Example 2.3 - Function declaration](./chapter02/chapter02_example03.c)
 ```c
 int power(int m, int n);
 ```
@@ -121,6 +124,7 @@ int power(int m, int n);
 - `n--` - decrement after use
 
 ### Examples:
+- [Example 2.4 - Increment and decrement operators](./chapter02/chapter02_example04.c)
 ```c
 x = n++;  // x gets old value of n, then n is incremented
 x = ++n;  // n is incremented, then x gets new value
@@ -137,6 +141,7 @@ x = ++n;  // n is incremented, then x gets new value
 - `~` bitwise NOT
 
 ### Examples:
+- [Example 2.5 - Bitwise operators](./chapter02/chapter02_example05.c)
 ```c
 n = n & 0177;  // turn off all bits except the low-order 7
 x = x | SET_ON;  // turn on the bits in SET_ON
@@ -158,6 +163,7 @@ x = x | SET_ON;  // turn on the bits in SET_ON
 - `|=` bitwise OR and assign
 
 ### Examples:
+- [Example 2.6 - Assignment operators](./chapter02/chapter02_example06.c)
 ```c
 i += 2;  // same as i = i + 2
 x *= y + 1;  // same as x = x * (y + 1)
@@ -171,6 +177,7 @@ expr1 ? expr2 : expr3
 ```
 
 ### Example:
+- [Example 2.7 - Conditional expressions](./chapter02/chapter02_example07.c)
 ```c
 z = (a > b) ? a : b;  // z = max(a, b)
 ```
@@ -204,4 +211,9 @@ z = (a > b) ? a : b;  // z = max(a, b)
 - [Exercise 2.2 - Loop without && or ||](./chapter02/02_02_loop.c)
 - [Exercise 2.3 - Hexadecimal to integer conversion](./chapter02/02_03_htoi.c)
 - [Exercise 2.4 - Alternative squeeze function](./chapter02/02_04_squeeze.c)
-- [Exercise 2.5 - any function](./chapter02/02_05_any.c) 
+- [Exercise 2.5 - any function](./chapter02/02_05_any.c)
+- [Exercise 2.6 - setbits function](./chapter02/02_06_setbits.c)
+- [Exercise 2.7 - invert function](./chapter02/02_07_invert.c)
+- [Exercise 2.8 - rightrot function](./chapter02/02_08_rightrot.c)
+- [Exercise 2.9 - Fast bitcount](./chapter02/02_09_bitcount.c)
+- [Exercise 2.10 - Lower function with conditional](./chapter02/02_10_lower.c) 
