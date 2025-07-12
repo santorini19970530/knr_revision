@@ -1,21 +1,13 @@
-# Going Back to C Project
+# K and R Study Repo
 
-## My Notes, Programming Exercises and Projects
+[Book Copy](/knr/knr.md)
 
-1. [K and R](/knr/knr.md)
+[Buy on Amazon](https://a.co/d/esSTpN1)
 
-## Learning Resource
+### Youtube Video
 
-### Books
+[Learn C Programming and OOP with Dr. Chuck [feat. classic book by Kernighan and Ritchie]](https://www.youtube.com/watch?v=PaPN51Mm5qQ)
 
-1. [K and R](https://a.co/d/esSTpN1)
+### Notes
 
-2. [Pointers on C](https://a.co/d/7ALKmDj)
-
-### Youtube Videos
-
-1. [Learn C Programming and OOP with Dr. Chuck [feat. classic book by Kernighan and Ritchie]](https://www.youtube.com/watch?v=PaPN51Mm5qQ)
-
-- Guidiance of the classic book
-
-- With comparison with Python basic code
+[Chapter 1](/knr/chapter01.md)

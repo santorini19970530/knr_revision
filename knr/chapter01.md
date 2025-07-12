@@ -62,6 +62,8 @@ while (character is not end-of-file indicator)
 
 - [Copy input to output (simplified)](./chapter01/01_11_input2output.c)
 
-* [Exercise 1.6 - print the condition value](./chapter01/01_12_validateTF.c)
+- [Exercise 1.6 - print the condition value](./chapter01/01_12_validateTF.c)
 
-* [Exercise 1.7 - print the EOF value](./chapter01/01_13_EOF_value.c)
+- [Exercise 1.7 - print the EOF value](./chapter01/01_13_EOF_value.c)
+
+### 1.5.2 Character Counting
