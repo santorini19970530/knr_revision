@@ -1,19 +1,24 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-/* Chapter 2 Example 1: Enumeration Constants */
+
+/* Example 2.1: strlen function demonstration */
 
 #include <stdio.h>
 
-/* Enumeration constants example */
-enum boolean { NO, YES };
-enum escapes { BELL = '\a', BACKSPACE = '\b', TAB = '\t' };
+/* strlen: return length of s */
+int strlen(char s[]){
+    int i;
+    
+    while (s[i] != '\0')
+        ++i;
+    
+    return i;
+}
 
 int main() {
-    enum boolean flag = YES;
-    enum escapes bell = BELL;
-    
-    printf("NO = %d, YES = %d\n", NO, YES);
-    printf("BELL = %d, BACKSPACE = %d, TAB = %d\n", BELL, BACKSPACE, TAB);
-    printf("flag = %d\n", flag);
-    
+    char s[] = "Hello, world!";
+
+    printf("String: %s\n", s);
+    printf("Length: %zu\n", strlen(s));
+
     return 0;
 } 

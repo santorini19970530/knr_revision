@@ -1,29 +1,22 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-/* Chapter 2 Example 4: Increment and Decrement Operators */
+
+/* Example 2.4: Function declaration */
 
 #include <stdio.h>
 
+int power(int m, int n);
+
 int main() {
-    int n = 5;
-    int x;
-    
-    printf("Initial value of n: %d\n", n);
-    
-    /* Postfix increment */
-    x = n++;
-    printf("x = n++: x = %d, n = %d\n", x, n);
-    
-    /* Prefix increment */
-    x = ++n;
-    printf("x = ++n: x = %d, n = %d\n", x, n);
-    
-    /* Postfix decrement */
-    x = n--;
-    printf("x = n--: x = %d, n = %d\n", x, n);
-    
-    /* Prefix decrement */
-    x = --n;
-    printf("x = --n: x = %d, n = %d\n", x, n);
-    
+    printf("2^3 = %d\n", power(2, 3));
+
     return 0;
+}
+
+int power(int m, int n) {
+    int p = 1;
+
+    for (int i = 0; i < n; i++)
+        p *= m;
+
+    return p;
 } 

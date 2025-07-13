@@ -1,26 +1,15 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-/* Chapter 2 Example 3: Function Declaration */
+
+/* Example 2.3: Variable declarations */
 
 #include <stdio.h>
 
-/* Function declaration example */
-int power(int m, int n);
-
 int main() {
-    int base = 2, exponent = 3;
-    int result = power(base, exponent);
-    
-    printf("%d raised to the power of %d = %d\n", base, exponent, result);
-    
-    return 0;
-}
+    int lower, upper, step;
 
-/* Function definition */
-int power(int m, int n) {
-    int i, p;
-    
-    p = 1;
-    for (i = 1; i <= n; ++i)
-        p = p * m;
-    return p;
+    lower = 0; upper = 100; step = 10;
+
+    printf("lower = %d, upper = %d, step = %d\n", lower, upper, step);
+
+    return 0;
 } 
