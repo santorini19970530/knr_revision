@@ -1,15 +1,16 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
+
+/* example 01-10 - count characters in input; 2nd version */
+
 #include <stdio.h>
 
-/* count lines in input */
 int main() {
-    int c, nl;
-    
-    nl = 0;
-    while ((c = getchar()) != EOF)
-        if (c == '\n')
-            ++nl;
-    printf("%d\n", nl);
+    double nc;
+
+    for(nc = 0; getchar() != EOF ; ++nc)
+        ;
+
+    printf("%.0f\n", nc);
     
     return 0;
 } 

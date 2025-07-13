@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include <stdio.h>
 
-/* Exercise 1-12 */
+/* Exercise 1-12 - print input one word per line */
+
+#include <stdio.h>
 
 int main() {
     int c;

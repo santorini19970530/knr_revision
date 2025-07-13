@@ -1,9 +1,10 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include<stdio.h>
 
-/* print Fahrenheit-Celsius table
+/* exercise 01-03 - print Fahrenheit-Celsius table
    for fahr = 0, 20, ..., 300
    floating-point version, with heading   */
+
+#include<stdio.h>
 
 int main(){
     float fahr, celsius;

@@ -1,27 +1,17 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
+
+/* example 01-11 - count lines in input */
+
 #include <stdio.h>
 
-#define IN  1   /* inside a word */
-#define OUT 0   /* outside a word */
-
-/* count lines, words, and characters in input */
 int main() {
-    int c, nl, nw, nc, state;
+    int c, nl;
     
-    state = OUT;
-    nl = nw = nc = 0;
-    while ((c = getchar()) != EOF) {
-        ++nc;
+    nl = 0;
+    while ((c = getchar()) != EOF)
         if (c == '\n')
             ++nl;
-        if (c == ' ' || c == '\n' || c == '\t')
-            state = OUT;
-        else if (state == OUT) {
-            state = IN;
-            ++nw;
-        }
-    }
-    printf("%d %d %d\n", nl, nw, nc);
+    printf("%d\n", nl);
     
     return 0;
 } 

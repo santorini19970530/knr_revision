@@ -1,8 +1,9 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include <stdio.h>
 
 /* Exercise 1-24: Write a program to check a C program for rudimentary syntax errors 
    like unmatched parentheses, brackets and braces */
+
+#include <stdio.h>
 
 int main() {
     int c;

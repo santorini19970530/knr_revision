@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include <stdio.h>
 
 /* Exercise 1-23: Write a program to remove all comments from a C program */
+
+#include <stdio.h>
 
 int main() {
     int c, next;

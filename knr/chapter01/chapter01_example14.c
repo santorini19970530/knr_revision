@@ -1,32 +1,24 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
+
+/* example 01-14 - test power function */
+
 #include <stdio.h>
 
-/* Section 1.8 - Arguments: Call by Value */
-
-/* This function demonstrates call by value - it receives a COPY of the argument */
-void increment_by_value(int x) {
-    x = x + 1;
-    printf("Inside increment_by_value: x = %d\n", x);
-}
-
-/* This function demonstrates call by reference using pointers */
-void increment_by_reference(int *x) {
-    *x = *x + 1;
-    printf("Inside increment_by_reference: *x = %d\n", *x);
-}
-
+int power(int m, int n);
 int main() {
-    int a = 5;
+    int i;
     
-    printf("Before function calls: a = %d\n", a);
-    
-    /* Call by value - a is not changed */
-    increment_by_value(a);
-    printf("After increment_by_value: a = %d\n", a);
-    
-    /* Call by reference - a IS changed */
-    increment_by_reference(&a);
-    printf("After increment_by_reference: a = %d\n", a);
-    
+    for (i = 0; i < 10; ++i)
+        printf("%d %d %d\n", i, power(2,i), power(-3,i));
     return 0;
+}
+
+/* power: raise base to n-th power; n >= 0 */
+int power(int base, int n) {
+    int i, p;
+    
+    p = 1;
+    for (i = 1; i <= n; ++i)
+        p = p * base;
+    return p;
 } 

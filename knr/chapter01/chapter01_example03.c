@@ -1,8 +1,9 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include<stdio.h>
 
-/* print Fahrenheit-Celsius table
+/* example 01-03 - print Fahrenheit-Celsius table
    for fahr = 0, 20, ..., 300 */
+
+#include<stdio.h>
 
 int main(){
     int fahr, celsius;

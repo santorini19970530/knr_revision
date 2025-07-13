@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include<stdio.h>
 
-// symbolic constants or symbolic names
+/* example 01-06 - symbolic constants or symbolic names */
+
+#include<stdio.h>
 
 #define LOWER 0 /* lower limit of temperature table */
 #define UPPER 300    /* upper limit */

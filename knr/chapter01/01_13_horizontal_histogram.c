@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include <stdio.h>
 
 /* Exercise 1-13: Write a program to print a histogram of the lengths of words in its input */
+
+#include <stdio.h>
 
 #define MAXWORD 20  /* maximum word length */
 #define IN 1        /* inside a word */

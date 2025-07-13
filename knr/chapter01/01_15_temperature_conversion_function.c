@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include <stdio.h>
 
 /* Exercise 1-15: Rewrite the temperature conversion program of Section 1.2 to use a function for conversion */
+
+#include <stdio.h>
 
 float fahr_to_celsius(float fahr);
 

@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include<stdio.h>
 
-/* print Fahrenheit-Celsius table (reversed order) */
+/* example 01-05 - print Fahrenheit-Celsius table (reversed order) */
+
+#include<stdio.h>
 
 int main(){
     int fahr;

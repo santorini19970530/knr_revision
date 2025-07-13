@@ -1,7 +1,8 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include<stdio.h>
 
-/* copy input to output : 2nd version */
+/* example 01-08 - copy input to output : 2nd version */
+
+#include<stdio.h>
 
 int main(){
     int c;

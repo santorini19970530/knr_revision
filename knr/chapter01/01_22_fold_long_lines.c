@@ -1,8 +1,9 @@
 /* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
-#include <stdio.h>
 
 /* Exercise 1-22: Write a program to "fold" long input lines into two or more shorter lines 
    after the last non-blank character that occurs before the n-th column of input */
+
+#include <stdio.h>
 
 #define MAXLINE 1000
 #define FOLDCOL 80
