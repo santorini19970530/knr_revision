@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include<stdio.h>
 
 /* copy input to output : 1st version */

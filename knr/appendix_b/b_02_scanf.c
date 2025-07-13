@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise B.2 - Custom scanf implementation */
 
 #include <stdio.h>

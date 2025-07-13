@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 6.5 - Undefine macro */
 
 #include <stdio.h>

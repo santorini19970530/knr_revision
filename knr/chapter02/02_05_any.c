@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include <stdio.h>
 
 /* Exercise 2.5: Write the function any(s1,s2), which returns the first location in a string s1

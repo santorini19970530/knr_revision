@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 4.4 - Add commands to calculator */
 
 #include <stdio.h>

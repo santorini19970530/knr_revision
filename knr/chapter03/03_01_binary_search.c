@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 3.1 - Binary search with one test inside loop */
 
 #include <stdio.h>

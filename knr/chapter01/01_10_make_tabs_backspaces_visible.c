@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include <stdio.h>
 
 /* Exercise 1-10: Write a program to copy its input to its output, 

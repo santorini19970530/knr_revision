@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 7.4 - Miniscanf function */
 
 #include <stdio.h>

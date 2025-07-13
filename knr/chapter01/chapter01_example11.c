@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include <stdio.h>
 
 #define IN  1   /* inside a word */

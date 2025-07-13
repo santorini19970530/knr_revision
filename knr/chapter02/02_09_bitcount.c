@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include <stdio.h>
 
 /* Exercise 2-9: In a two's complement number system, x &= (x-1) deletes the rightmost 1-bit in x. 

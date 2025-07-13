@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise A.2 - Preprocessor implementation */
 
 #include <stdio.h>

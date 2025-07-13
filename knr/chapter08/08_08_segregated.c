@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /*
  * Exercise 8.8 - Memory allocator with segregated lists
  * 

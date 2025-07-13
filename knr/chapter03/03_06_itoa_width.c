@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 3.6 - Add field width support to itoa */
 
 #include <stdio.h>

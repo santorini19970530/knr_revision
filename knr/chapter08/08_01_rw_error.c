@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 8.1 - Rewrite read and write with error handling */
 
 #include <stdio.h>

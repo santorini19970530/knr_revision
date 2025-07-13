@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 8.2 - Rewrite fopen and getc with buffering */
 
 #include <stdio.h>

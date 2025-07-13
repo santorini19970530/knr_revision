@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include <stdio.h>
 
 /* Exercise 2.4: Write an alternative version of squeeze(s1,s2) that deletes each character

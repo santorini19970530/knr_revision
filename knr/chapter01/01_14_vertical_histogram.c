@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 #include <stdio.h>
 
 /* Exercise 1-14: Write a program to print a vertical histogram of the lengths of words in its input */

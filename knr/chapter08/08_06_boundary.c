@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /*
  * Exercise 8.6 - Memory allocator with boundary tags
  * 

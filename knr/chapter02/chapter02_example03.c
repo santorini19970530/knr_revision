@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Chapter 2 Example 3: Function Declaration */
 
 #include <stdio.h>

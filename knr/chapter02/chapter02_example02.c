@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Chapter 2 Example 2: Variable Declarations */
 
 #include <stdio.h>

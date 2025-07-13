@@ -1,3 +1,4 @@
+/* KnR Book Second Edition, written by Brian Kernighan and Dennis Ritchie */
 /* Exercise 6.6 - Simple version of #define */
 
 #include <stdio.h>
