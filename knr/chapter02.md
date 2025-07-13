@@ -23,6 +23,8 @@
 - `unsigned` numbers are always positive
 - `signed` is the default
 
+- [Exercise 2.1 - Determine ranges of char, short, int, long](./chapter02/02_01_ranges.c)
+
 ## 2.3 Constants
 
 ### Integer Constants:
@@ -96,6 +98,8 @@ int power(int m, int n);
 - `&&` and `||` evaluate left to right
 - Stop as soon as truth or falsehood is determined
 
+- [Exercise 2.2 - Loop without && or ||](./chapter02/02_02_loop.c)
+
 ## 2.7 Type Conversions
 
 ### Automatic Conversions:
@@ -114,6 +118,8 @@ int power(int m, int n);
 3. Otherwise, if either operand is `float`, convert other to `float`
 4. Otherwise, convert `char` and `short` to `int`
 5. Then, if either operand is `long`, convert other to `long`
+
+- [Exercise 2.3 - Hexadecimal to integer conversion](./chapter02/02_03_htoi.c)
 
 ## 2.8 Increment and Decrement Operators
 
@@ -147,6 +153,13 @@ n = n & 0177;  // turn off all bits except the low-order 7
 x = x | SET_ON;  // turn on the bits in SET_ON
 ```
 
+- [Exercise 2.4 - Alternative squeeze function](./chapter02/02_04_squeeze.c)
+- [Exercise 2.5 - any function](./chapter02/02_05_any.c)
+- [Exercise 2.6 - setbits function](./chapter02/02_06_setbits.c)
+- [Exercise 2.7 - invert function](./chapter02/02_07_invert.c)
+- [Exercise 2.8 - rightrot function](./chapter02/02_08_rightrot.c)
+- [Exercise 2.9 - Fast bitcount](./chapter02/02_09_bitcount.c)
+
 ## 2.10 Assignment Operators and Expressions
 
 ### Assignment Operators:
@@ -168,6 +181,8 @@ x = x | SET_ON;  // turn on the bits in SET_ON
 i += 2;  // same as i = i + 2
 x *= y + 1;  // same as x = x * (y + 1)
 ```
+
+- [Exercise 2.10 - Lower function with conditional](./chapter02/02_10_lower.c)
 
 ## 2.11 Conditional Expressions
 
@@ -203,17 +218,4 @@ z = (a > b) ? a : b;  // z = max(a, b)
 
 ### Associativity:
 - Most operators are left-associative
-- Unary operators and assignment operators are right-associative
-
-## Exercises
-
-- [Exercise 2.1 - Determine ranges of char, short, int, long](./chapter02/02_01_ranges.c)
-- [Exercise 2.2 - Loop without && or ||](./chapter02/02_02_loop.c)
-- [Exercise 2.3 - Hexadecimal to integer conversion](./chapter02/02_03_htoi.c)
-- [Exercise 2.4 - Alternative squeeze function](./chapter02/02_04_squeeze.c)
-- [Exercise 2.5 - any function](./chapter02/02_05_any.c)
-- [Exercise 2.6 - setbits function](./chapter02/02_06_setbits.c)
-- [Exercise 2.7 - invert function](./chapter02/02_07_invert.c)
-- [Exercise 2.8 - rightrot function](./chapter02/02_08_rightrot.c)
-- [Exercise 2.9 - Fast bitcount](./chapter02/02_09_bitcount.c)
-- [Exercise 2.10 - Lower function with conditional](./chapter02/02_10_lower.c) 
+- Unary operators and assignment operators are right-associative 

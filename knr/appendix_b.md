@@ -84,6 +84,8 @@ printf("Width: %5d\n", 123);
 printf("String: %s\n", "Hello");
 ```
 
+- [Exercise B.1 - Custom printf implementation](./appendix_b/b_01_printf.c)
+
 ### B.1.3 Formatted Input
 
 #### scanf Functions:
@@ -120,6 +122,8 @@ char monthname[20];
 scanf("%d %s %d", &day, monthname, &year);
 scanf("%d/%d/%d", &month, &day, &year);
 ```
+
+- [Exercise B.2 - Custom scanf implementation](./appendix_b/b_02_scanf.c)
 
 ### B.1.4 Character Input and Output Functions
 
@@ -198,40 +202,9 @@ SEEK_END    /* end of file */
 #### Example:
 ```c
 FILE *fp = fopen("file.txt", "r");
-fseek(fp, 10L, SEEK_SET);  /* seek to position 10 */
-long pos = ftell(fp);       /* get current position */
-rewind(fp);                 /* go to beginning */
-```
-
-### B.1.7 Error Functions
-
-#### Error Handling:
-```c
-void clearerr(FILE *stream);
-int feof(FILE *stream);
-int ferror(FILE *stream);
-void perror(const char *s);
-```
-
-#### Example:
-```c
-FILE *fp = fopen("nonexistent.txt", "r");
-if (fp == NULL) {
-    perror("fopen");
-    return 1;
-}
-
-while ((c = fgetc(fp)) != EOF) {
-    if (ferror(fp)) {
-        fprintf(stderr, "Read error\n");
-        clearerr(fp);
-        break;
-    }
-    if (feof(fp)) {
-        printf("End of file\n");
-        break;
-    }
-}
+fseek(fp, 0L, SEEK_END);
+long size = ftell(fp);
+rewind(fp);
 ```
 
 ## B.2 Character Class Tests: <ctype.h>
@@ -245,7 +218,7 @@ int isdigit(int c);   /* decimal digit */
 int isgraph(int c);   /* printing character except space */
 int islower(int c);   /* lower-case letter */
 int isprint(int c);   /* printing character including space */
-int ispunct(int c);   /* printing character except space or letter or digit */
+int ispunct(int c);   /* printing character except space, letter, digit */
 int isspace(int c);   /* space, formfeed, newline, carriage return, tab, vertical tab */
 int isupper(int c);   /* upper-case letter */
 int isxdigit(int c);  /* hexadecimal digit */
@@ -259,25 +232,26 @@ int toupper(int c);   /* convert to upper case */
 
 #### Example:
 ```c
-int c;
-while ((c = getchar()) != EOF) {
-    if (isalpha(c)) {
-        if (isupper(c))
-            putchar(tolower(c));
-        else
-            putchar(toupper(c));
-    } else {
-        putchar(c);
-    }
-}
+#include <ctype.h>
+
+char c = 'A';
+if (isupper(c))
+    c = tolower(c);
+
+if (isdigit(c))
+    printf("Digit: %c\n", c);
 ```
 
 ## B.3 String Functions: <string.h>
 
-### String Copying:
+### String Copy:
 ```c
 char *strcpy(char *s, const char *t);
 char *strncpy(char *s, const char *t, size_t n);
+```
+
+### String Concatenation:
+```c
 char *strcat(char *s, const char *t);
 char *strncat(char *s, const char *t, size_t n);
 ```
@@ -288,44 +262,30 @@ int strcmp(const char *s, const char *t);
 int strncmp(const char *s, const char *t, size_t n);
 ```
 
-### String Length:
-```c
-size_t strlen(const char *s);
-```
-
 ### String Search:
 ```c
 char *strchr(const char *s, int c);
 char *strrchr(const char *s, int c);
 char *strstr(const char *s, const char *t);
-char *strpbrk(const char *s, const char *t);
-char *strtok(char *s, const char *delim);
 ```
 
-### Memory Operations:
+### String Length:
 ```c
-void *memcpy(void *s, const void *t, size_t n);
-void *memmove(void *s, const void *t, size_t n);
-int memcmp(const void *s, const void *t, size_t n);
-void *memchr(const void *s, int c, size_t n);
-void *memset(void *s, int c, size_t n);
+size_t strlen(const char *s);
 ```
 
 #### Example:
 ```c
+#include <string.h>
+
 char s[100];
 strcpy(s, "Hello");
 strcat(s, " World");
 printf("Length: %zu\n", strlen(s));
-printf("String: %s\n", s);
-
-if (strcmp(s, "Hello World") == 0)
-    printf("Strings are equal\n");
-
-char *p = strchr(s, 'o');
-if (p)
-    printf("Found 'o' at position %ld\n", p - s);
+printf("Contains 'o': %s\n", strchr(s, 'o') ? "yes" : "no");
 ```
+
+- [Exercise B.3 - String library functions](./appendix_b/b_03_strings.c)
 
 ## B.4 Mathematical Functions: <math.h>
 
@@ -356,15 +316,12 @@ double pow(double x, double y);
 double sqrt(double x);
 ```
 
-### Other Mathematical Functions:
+### Other Functions:
 ```c
 double ceil(double x);
 double floor(double x);
 double fabs(double x);
 double fmod(double x, double y);
-double ldexp(double x, int n);
-double frexp(double x, int *exp);
-double modf(double x, double *ip);
 ```
 
 #### Example:
@@ -372,13 +329,13 @@ double modf(double x, double *ip);
 #include <math.h>
 
 double x = 3.14159;
-printf("sin(x) = %f\n", sin(x));
-printf("cos(x) = %f\n", cos(x));
-printf("sqrt(x) = %f\n", sqrt(x));
-printf("pow(x, 2) = %f\n", pow(x, 2));
-printf("ceil(x) = %f\n", ceil(x));
-printf("floor(x) = %f\n", floor(x));
+printf("sin(π) = %f\n", sin(x));
+printf("cos(π) = %f\n", cos(x));
+printf("√2 = %f\n", sqrt(2.0));
+printf("e^2 = %f\n", exp(2.0));
 ```
+
+- [Exercise B.4 - Math library functions](./appendix_b/b_04_math.c)
 
 ## B.5 Utility Functions: <stdlib.h>
 
@@ -405,10 +362,8 @@ void srand(unsigned int seed);
 
 ### Environment:
 ```c
-void abort(void);
-void exit(int status);
-int system(const char *s);
 char *getenv(const char *name);
+int system(const char *s);
 ```
 
 ### Search and Sort:
@@ -450,6 +405,8 @@ int compare(const void *a, const void *b) {
 int arr[] = {3, 1, 4, 1, 5, 9};
 qsort(arr, 6, sizeof(int), compare);
 ```
+
+- [Exercise B.5 - Memory allocator](./appendix_b/b_05_malloc.c)
 
 ## B.6 Diagnostics: <assert.h>
 
@@ -542,6 +499,8 @@ void handler(int sig) {
 signal(SIGINT, handler);  /* handle Ctrl-C */
 ```
 
+- [Exercise B.7 - Signal handlers](./appendix_b/b_07_signals.c)
+
 ## B.10 Date and Time Functions: <time.h>
 
 ### Time Functions:
@@ -566,6 +525,8 @@ printf("Year: %d\n", tm->tm_year + 1900);
 printf("Month: %d\n", tm->tm_mon + 1);
 printf("Day: %d\n", tm->tm_mday);
 ```
+
+- [Exercise B.6 - Date/time utilities](./appendix_b/b_06_time.c)
 
 ## B.11 Implementation-defined Limits: <limits.h> and <float.h>
 
@@ -613,13 +574,4 @@ printf("FLT_MIN = %e\n", FLT_MIN);
 printf("FLT_DIG = %d\n", FLT_DIG);
 ```
 
-## Exercises
-
-- [Exercise B.1 - Custom printf implementation](./appendix_b/b_01_printf.c)
-- [Exercise B.2 - Custom scanf implementation](./appendix_b/b_02_scanf.c)
-- [Exercise B.3 - String library functions](./appendix_b/b_03_strings.c)
-- [Exercise B.4 - Math library functions](./appendix_b/b_04_math.c)
-- [Exercise B.5 - Memory allocator](./appendix_b/b_05_malloc.c)
-- [Exercise B.6 - Date/time utilities](./appendix_b/b_06_time.c)
-- [Exercise B.7 - Signal handlers](./appendix_b/b_07_signals.c)
 - [Exercise B.8 - File utilities](./appendix_b/b_08_files.c) 

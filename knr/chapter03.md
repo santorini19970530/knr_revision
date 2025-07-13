@@ -68,6 +68,8 @@ else
     return mid;  /* found match */
 ```
 
+- [Exercise 3.1 - Binary search with one test inside loop](./chapter03/03_01_binary_search.c)
+
 ## 3.4 Switch
 
 ### Switch Statement:
@@ -102,6 +104,9 @@ switch (c) {
 - Without `break`, execution falls through to next case
 - `default` is optional
 - Expression must be integer type
+
+- [Exercise 3.2 - Escape sequence conversion](./chapter03/03_02_escape.c)
+- [Exercise 3.3 - Expand shorthand notation](./chapter03/03_03_expand.c)
 
 ## 3.5 Loops - While and For
 
@@ -158,6 +163,10 @@ do {
     /* process n */
 } while (n != EOF);
 ```
+
+- [Exercise 3.4 - itoa function](./chapter03/03_04_itoa.c)
+- [Exercise 3.5 - itob function](./chapter03/03_05_itob.c)
+- [Exercise 3.6 - Add field width support to itoa](./chapter03/03_06_itoa_width.c)
 
 ## 3.7 Break and Continue
 
@@ -222,13 +231,4 @@ for (i = 0; i < n && !found; i++)
     for (j = 0; j < m && !found; j++)
         if (a[i] == b[j])
             found = 1;
-```
-
-## Exercises
-
-- [Exercise 3.1 - Binary search with one test inside loop](./chapter03/03_01_binary_search.c)
-- [Exercise 3.2 - Escape sequence conversion](./chapter03/03_02_escape.c)
-- [Exercise 3.3 - Expand shorthand notation](./chapter03/03_03_expand.c)
-- [Exercise 3.4 - itoa function](./chapter03/03_04_itoa.c)
-- [Exercise 3.5 - itob function](./chapter03/03_05_itob.c)
-- [Exercise 3.6 - Add field width support to itoa](./chapter03/03_06_itoa_width.c) 
+``` 

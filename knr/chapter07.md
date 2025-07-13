@@ -2,15 +2,10 @@
 
 ## 7.1 Standard Input and Output
 
-### File Descriptors:
-- `stdin` - standard input (file descriptor 0)
-- `stdout` - standard output (file descriptor 1)
-- `stderr` - standard error (file descriptor 2)
-
 ### Character Input/Output:
 ```c
-int getchar(void);     /* returns next character from stdin */
-int putchar(int c);    /* writes character c to stdout */
+int getchar(void);
+int putchar(int);
 ```
 
 ### Example - Character Copy:
@@ -30,48 +25,33 @@ int main() {
 
 ### Basic Format Specifiers:
 ```c
-%d    decimal integer
-%i    integer (same as %d)
-%o    octal integer
-%x    hexadecimal integer
-%X    hexadecimal integer (uppercase)
-%u    unsigned decimal integer
-%c    character
-%s    string
-%f    floating point
-%e    scientific notation
-%E    scientific notation (uppercase)
-%g    shortest of %e or %f
-%G    shortest of %E or %f
-%p    pointer
-%n    number of characters written
-%%    percent sign
+printf("Hello, world\n");
+printf("x = %d\n", x);
+printf("x = %d, y = %d\n", x, y);
 ```
 
-### Field Width and Precision:
-```c
-%5d    field width of 5 characters
-%.3f   precision of 3 decimal places
-%5.3f  field width 5, precision 3
-%-5d   left-justified in field of 5
-%+5d   always show sign
-% 5d   space for positive, minus for negative
-%#x    show 0x prefix for hexadecimal
-%05d   pad with zeros
-```
+### Format Specifiers:
+- `%d` - decimal integer
+- `%i` - integer
+- `%o` - octal integer
+- `%x` - hexadecimal integer
+- `%X` - hexadecimal integer (uppercase)
+- `%u` - unsigned integer
+- `%c` - character
+- `%s` - string
+- `%f` - floating point
+- `%e` - scientific notation
+- `%E` - scientific notation (uppercase)
+- `%g` - shortest of %e or %f
+- `%G` - shortest of %E or %f
+- `%%` - percent sign
 
-### Example - Formatted Output:
-```c
-printf("Hello, %s\n", "world");
-printf("Integer: %d\n", 42);
-printf("Float: %.2f\n", 3.14159);
-printf("Hex: %x\n", 255);
-printf("Width: %5d\n", 123);
-```
+- [Exercise 7.1 - Convert to lowercase](./chapter07/07_01_lower.c)
+- [Exercise 7.2 - Convert to uppercase](./chapter07/07_02_upper.c)
 
 ## 7.3 Variable-length Argument Lists
 
-### Function with Variable Arguments:
+### Example - Minprintf:
 ```c
 #include <stdarg.h>
 
@@ -88,97 +68,57 @@ void minprintf(char *fmt, ...) {
             continue;
         }
         switch (*++p) {
-        case 'd':
-            ival = va_arg(ap, int);
-            printf("%d", ival);
-            break;
-        case 'f':
-            dval = va_arg(ap, double);
-            printf("%f", dval);
-            break;
-        case 's':
-            for (sval = va_arg(ap, char *); *sval; sval++)
-                putchar(*sval);
-            break;
-        default:
-            putchar(*p);
-            break;
+            case 'd':
+                ival = va_arg(ap, int);
+                printf("%d", ival);
+                break;
+            case 'f':
+                dval = va_arg(ap, double);
+                printf("%f", dval);
+                break;
+            case 's':
+                for (sval = va_arg(ap, char *); *sval; sval++)
+                    putchar(*sval);
+                break;
+            default:
+                putchar(*p);
+                break;
         }
     }
     va_end(ap);
 }
 ```
 
-## 7.4 Formatted Input - Scanf
+## 7.4 Formatted Input - scanf
 
-### Basic Scanf Format Specifiers:
+### Basic scanf Usage:
 ```c
-%d    decimal integer
-%i    integer (accepts octal, decimal, hex)
-%o    octal integer
-%x    hexadecimal integer
-%u    unsigned decimal integer
-%c    character
-%s    string
-%f    floating point
-%e    scientific notation
-%g    shortest of %e or %f
-%p    pointer
-%n    number of characters read
-%[    character class
-%%    percent sign
+int n;
+scanf("%d", &n);
 ```
 
-### Example - Input Processing:
+### Multiple Values:
 ```c
 int day, month, year;
-char monthname[20];
-
-scanf("%d %s %d", &day, monthname, &year);
 scanf("%d/%d/%d", &month, &day, &year);
 ```
 
-### Custom Input Function:
-```c
-int getint(int *pn) {
-    int c, sign;
-    
-    while (isspace(c = getch()))
-        ;
-    if (!isdigit(c) && c != EOF && c != '+' && c != '-') {
-        ungetch(c);
-        return 0;
-    }
-    sign = (c == '-') ? -1 : 1;
-    if (c == '+' || c == '-')
-        c = getch();
-    for (*pn = 0; isdigit(c); c = getch())
-        *pn = 10 * *pn + (c - '0');
-    *pn *= sign;
-    if (c != EOF)
-        ungetch(c);
-    return c;
-}
-```
+### scanf Return Value:
+- Returns number of successfully read items
+- Returns EOF on end of file
+
+- [Exercise 7.3 - Minprintf function](./chapter07/07_03_minprintf.c)
+- [Exercise 7.4 - Miniscanf function](./chapter07/07_04_miniscanf.c)
 
 ## 7.5 File Access
 
 ### File Operations:
 ```c
-FILE *fopen(char *name, char *mode);
-int fclose(FILE *fp);
-int getc(FILE *fp);
-int putc(int c, FILE *fp);
-```
-
-### File Modes:
-```c
-"r"    read
-"w"    write (truncate)
-"a"    append
-"r+"   read and write
-"w+"   read and write (truncate)
-"a+"   read and append
+FILE *fp;
+fp = fopen("filename", "r");  /* read */
+fp = fopen("filename", "w");  /* write */
+fp = fopen("filename", "a");  /* append */
+fclose(fp);
 ```
 
 ### Example - File Copy:
@@ -215,26 +155,7 @@ void filecopy(FILE *ifp, FILE *ofp) {
 
 ### Error Output:
 ```c
-#include <stdio.h>
-#include <stdlib.h>
-
-int main(int argc, char *argv[]) {
-    FILE *fp;
-    
-    if (argc != 2) {
-        fprintf(stderr, "usage: %s filename\n", argv[0]);
-        exit(1);
-    }
-    
-    if ((fp = fopen(argv[1], "r")) == NULL) {
-        fprintf(stderr, "can't open %s\n", argv[1]);
-        exit(1);
-    }
-    
-    /* process file */
-    fclose(fp);
-    return 0;
-}
+fprintf(stderr, "error: can't open %s\n", filename);
 ```
 
 ### Exit Status:
@@ -242,6 +163,11 @@ int main(int argc, char *argv[]) {
 exit(0);    /* successful termination */
 exit(1);    /* error termination */
 ```
+
+- [Exercise 7.5 - Rewrite postfix calculator](./chapter07/07_05_postfix.c)
+- [Exercise 7.6 - Compare files](./chapter07/07_06_compare.c)
+- [Exercise 7.7 - Pattern matching](./chapter07/07_07_pattern.c)
+- [Exercise 7.8 - Print directory](./chapter07/07_08_directory.c)
 
 ## 7.7 Line Input and Output
 
@@ -417,15 +343,5 @@ void srand(unsigned int seed) {
 }
 ```
 
-## Exercises
-
-- [Exercise 7.1 - Convert to lowercase](./chapter07/07_01_lower.c)
-- [Exercise 7.2 - Convert to uppercase](./chapter07/07_02_upper.c)
-- [Exercise 7.3 - Minprintf function](./chapter07/07_03_minprintf.c)
-- [Exercise 7.4 - Miniscanf function](./chapter07/07_04_miniscanf.c)
-- [Exercise 7.5 - Rewrite postfix calculator](./chapter07/07_05_postfix.c)
-- [Exercise 7.6 - Compare files](./chapter07/07_06_compare.c)
-- [Exercise 7.7 - Pattern matching](./chapter07/07_07_pattern.c)
-- [Exercise 7.8 - Print directory](./chapter07/07_08_directory.c)
 - [Exercise 7.9 - Functions like isupper](./chapter07/07_09_isupper.c)
 - [Exercise 7.10 - Convert to lowercase with conditional](./chapter07/07_10_lower_cond.c) 

@@ -10,86 +10,57 @@ struct point {
 };
 ```
 
-### Structure Variable Declaration:
+### Structure Variable:
 ```c
 struct point pt;
+pt.x = 320;
+pt.y = 200;
+```
+
+### Structure Initialization:
+```c
 struct point maxpt = {320, 200};
 ```
 
-### Accessing Structure Members:
+### Structure Assignment:
 ```c
-pt.x = 320;
-pt.y = 200;
-printf("(%d,%d)\n", pt.x, pt.y);
-```
-
-### Example - Rectangle:
-```c
-struct rect {
-    struct point pt1;
-    struct point pt2;
-};
-
-struct rect screen;
-screen.pt1.x = 0;
-screen.pt1.y = 0;
-screen.pt2.x = 640;
-screen.pt2.y = 480;
+pt = maxpt;  /* copy structure */
 ```
 
 ## 6.2 Structures and Functions
 
-### Passing Structures by Value:
+### Pass by Value:
 ```c
 struct point makepoint(int x, int y) {
     struct point temp;
+    
     temp.x = x;
     temp.y = y;
     return temp;
 }
-
-struct point addpoint(struct point p1, struct point p2) {
-    p1.x += p2.x;
-    p1.y += p2.y;
-    return p1;
-}
 ```
 
-### Passing Structures by Pointer:
-```c
-struct point *addpoint(struct point *p1, struct point *p2) {
-    p1->x += p2->x;
-    p1->y += p2->y;
-    return p1;
-}
-```
-
-### Structure Pointer Notation:
+### Pass by Reference:
 ```c
 struct point *pp;
-pp->x = 320;  /* equivalent to (*pp).x = 320 */
-pp->y = 200;
+pp = &pt;
+(*pp).x = 320;  /* parentheses required */
+pp->x = 320;    /* equivalent */
 ```
 
 ## 6.3 Arrays of Structures
 
-### Array of Points:
+### Array Declaration:
 ```c
-struct point pts[100];
-```
-
-### Example - Key Count:
-```c
-#include <stdio.h>
-#include <ctype.h>
-#include <string.h>
-
-#define MAXWORD 100
-
 struct key {
     char *word;
     int count;
-} keytab[] = {
+} keytab[NKEYS];
+```
+
+### Array Initialization:
+```c
+struct key keytab[] = {
     {"auto", 0},
     {"break", 0},
     {"case", 0},
@@ -102,66 +73,43 @@ struct key {
     {"volatile", 0},
     {"while", 0}
 };
-
-#define NKEYS (sizeof keytab / sizeof keytab[0])
 ```
 
-### Binary Search for Keywords:
-```c
-int binsearch(char *word, struct key tab[], int n) {
-    int cond;
-    int low, high, mid;
-    
-    low = 0;
-    high = n - 1;
-    while (low <= high) {
-        mid = (low + high) / 2;
-        if ((cond = strcmp(word, tab[mid].word)) < 0)
-            high = mid - 1;
-        else if (cond > 0)
-            low = mid + 1;
-        else
-            return mid;
-    }
-    return -1;
-}
-```
+- [Exercise 6.1 - getword function](./chapter06/06_01_getword.c)
+- [Exercise 6.2 - Write program to read C declarations](./chapter06/06_02_c_decl.c)
+- [Exercise 6.3 - Cross-reference program](./chapter06/06_03_crossref.c)
 
 ## 6.4 Pointers to Structures
 
-### Structure Pointer:
+### Pointer Declaration:
 ```c
 struct point *pp;
 ```
 
-### Example - getword:
+### Access via Pointer:
 ```c
-int getword(char *word, int lim) {
-    int c, getch(void);
-    void ungetch(int);
-    char *w = word;
-    
-    while (isspace(c = getch()))
-        ;
-    if (c != EOF)
-        *w++ = c;
-    if (!isalpha(c)) {
-        *w = '\0';
-        return c;
-    }
-    for (; --lim > 0; w++)
-        if (!isalnum(*w = getch())) {
-            ungetch(*w);
-            break;
-        }
-    *w = '\0';
-    return word[0];
+pp->x = 320;  /* equivalent to (*pp).x = 320 */
+```
+
+### Example - String Length:
+```c
+struct namect {
+    char fname[20];
+    char lname[20];
+    int letters;
+};
+
+void getinfo(struct namect *pst) {
+    printf("Please enter your first name.\n");
+    gets(pst->fname);
+    printf("Please enter your last name.\n");
+    gets(pst->lname);
 }
 ```
 
 ## 6.5 Self-referential Structures
 
-### Linked List Node:
+### Binary Tree Node:
 ```c
 struct tnode {
     char *word;
@@ -206,6 +154,8 @@ struct tnode *addtree(struct tnode *p, char *w) {
     return p;
 }
 ```
+
+- [Exercise 6.4 - Print tree in order](./chapter06/06_04_treeprint.c)
 
 ## 6.6 Table Lookup
 
@@ -296,6 +246,9 @@ typedef int (*PFI)(char *, char *);
 PFI strcmp, numcmp;
 ```
 
+- [Exercise 6.5 - Undefine macro](./chapter06/06_05_undef.c)
+- [Exercise 6.6 - Simple version of #define](./chapter06/06_06_define.c)
+
 ## 6.8 Unions
 
 ### Union Declaration:
@@ -358,13 +311,4 @@ struct date {
     unsigned int m : 4;
     unsigned int y : 7;
 };
-```
-
-## Exercises
-
-- [Exercise 6.1 - getword function](./chapter06/06_01_getword.c)
-- [Exercise 6.2 - Write program to read C declarations](./chapter06/06_02_c_decl.c)
-- [Exercise 6.3 - Cross-reference program](./chapter06/06_03_crossref.c)
-- [Exercise 6.4 - Print tree in order](./chapter06/06_04_treeprint.c)
-- [Exercise 6.5 - Undefine macro](./chapter06/06_05_undef.c)
-- [Exercise 6.6 - Simple version of #define](./chapter06/06_06_define.c) 
+``` 

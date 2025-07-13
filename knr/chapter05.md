@@ -4,80 +4,50 @@
 
 ### Pointer Declaration:
 ```c
-int *ip;  /* ip is a pointer to int */
+int *p;  /* p is a pointer to int */
 ```
 
-### Address Operator (&):
+### Address Operator:
+```c
+p = &c;  /* p now points to c */
+```
+
+### Dereferencing:
+```c
+*p = 0;  /* set c to 0 */
+```
+
+### Example:
 ```c
 int x = 1, y = 2, z[10];
-int *ip;
+int *ip;  /* ip is a pointer to int */
 
-ip = &x;    /* ip now points to x */
-y = *ip;    /* y is now 1 */
-*ip = 0;    /* x is now 0 */
-ip = &z[0]; /* ip now points to z[0] */
-```
-
-### Dereferencing Operator (*):
-```c
-*ip = *ip + 10;  /* increments *ip by 10 */
-```
-
-### Pointer Arithmetic:
-```c
-y = *ip + 1;  /* takes whatever ip points at, adds 1, assigns to y */
-*ip += 1;     /* increments what ip points to */
-++*ip;        /* increments what ip points to */
-(*ip)++;      /* parentheses are necessary */
+ip = &x;  /* ip now points to x */
+y = *ip;  /* y is now 1 */
+*ip = 0;  /* x is now 0 */
+ip = &z[0];  /* ip now points to z[0] */
 ```
 
 ## 5.2 Pointers and Function Arguments
 
-### Call by Value Problem:
-```c
-void swap(int x, int y) {  /* WRONG */
-    int temp;
-    temp = x;
-    x = y;
-    y = temp;
-}
-```
-
-### Solution with Pointers:
+### Call by Reference:
 ```c
 void swap(int *px, int *py) {
     int temp;
+    
     temp = *px;
     *px = *py;
     *py = temp;
 }
+```
 
-/* Usage */
+### Usage:
+```c
 swap(&a, &b);
 ```
 
-### Example - getint:
-```c
-int getint(int *pn) {
-    int c, sign;
-    
-    while (isspace(c = getch()))
-        ;
-    if (!isdigit(c) && c != EOF && c != '+' && c != '-') {
-        ungetch(c);
-        return 0;
-    }
-    sign = (c == '-') ? -1 : 1;
-    if (c == '+' || c == '-')
-        c = getch();
-    for (*pn = 0; isdigit(c); c = getch())
-        *pn = 10 * *pn + (c - '0');
-    *pn *= sign;
-    if (c != EOF)
-        ungetch(c);
-    return c;
-}
-```
+- [Exercise 5.1 - getint with pointer](./chapter05/05_01_getint.c)
+- [Exercise 5.2 - getfloat function](./chapter05/05_02_getfloat.c)
 
 ## 5.3 Pointers and Arrays
 
@@ -85,24 +55,18 @@ int getint(int *pn) {
 ```c
 int a[10];
 int *pa;
-
-pa = &a[0];  /* pa points to element zero of a */
+pa = &a[0];  /* pa points to element 0 of a */
 pa = a;       /* same as pa = &a[0] */
-```
-
-### Array Access:
-```c
-a[i] = *(a + i);  /* equivalent expressions */
 ```
 
 ### Pointer Arithmetic:
 ```c
-pa = &a[0];
-pa + 1;  /* points to a[1] */
-pa + i;  /* points to a[i] */
+pa + 1;      /* points to next element */
+*(pa + 1);   /* contents of next element */
+pa[i];       /* same as *(pa + i) */
 ```
 
-### Example - strlen:
+### Example:
 ```c
 int strlen(char *s) {
     int n;
@@ -117,31 +81,15 @@ int strlen(char *s) {
 
 ### Pointer Subtraction:
 ```c
-int *p1, *p2;
-p1 = &a[0];
-p2 = &a[5];
-p2 - p1;  /* equals 5 */
+int *p, *q;
+p = &a[5];
+q = &a[1];
+p - q;  /* number of elements between p and q */
 ```
 
-### Example - Memory Allocator:
+### Pointer Comparison:
 ```c
-#define ALLOCSIZE 10000
-
-static char allocbuf[ALLOCSIZE];
-static char *allocp = allocbuf;
-
-char *alloc(int n) {
-    if (allocbuf + ALLOCSIZE - allocp >= n) {
-        allocp += n;
-        return allocp - n;
-    } else
-        return 0;
-}
-
-void afree(char *p) {
-    if (p >= allocbuf && p < allocbuf + ALLOCSIZE)
-        allocp = p;
-}
+p < q;  /* true if p points to earlier element than q */
 ```
 
 ## 5.5 Character Pointers and Functions
@@ -149,10 +97,10 @@ void afree(char *p) {
 ### String Constants:
 ```c
 char *pmessage;
-pmessage = "now is the time";  /* assigns to pmessage a pointer to the character array */
+pmessage = "now is the time";  /* pmessage points to the array */
 ```
 
-### Example - strcpy:
+### String Copy Function:
 ```c
 void strcpy(char *s, char *t) {
     int i;
@@ -163,7 +111,7 @@ void strcpy(char *s, char *t) {
 }
 ```
 
-### Alternative strcpy:
+### Pointer Version:
 ```c
 void strcpy(char *s, char *t) {
     while ((*s = *t) != '\0') {
@@ -173,13 +121,17 @@ void strcpy(char *s, char *t) {
 }
 ```
 
-### Compact strcpy:
+### Compact Version:
 ```c
 void strcpy(char *s, char *t) {
     while (*s++ = *t++)
         ;
 }
 ```
+
+- [Exercise 5.3 - strcat with pointers](./chapter05/05_03_strcat.c)
+- [Exercise 5.4 - strend function](./chapter05/05_04_strend.c)
+- [Exercise 5.5 - strncpy, strncat, strncmp](./chapter05/05_05_strn_functions.c)
 
 ## 5.6 Pointer Arrays; Pointers to Pointers
 
@@ -206,6 +158,9 @@ void qsort(char *lineptr[], int left, int right) {
     qsort(lineptr, last+1, right);
 }
 ```
+
+- [Exercise 5.6 - Rewrite getline with pointers](./chapter05/05_06_getline_pointers.c)
+- [Exercise 5.7 - Read lines into array of pointers](./chapter05/05_07_readlines.c)
 
 ## 5.7 Multi-dimensional Arrays
 
@@ -245,6 +200,9 @@ char *month_name(int n) {
     return (n < 1 || n > 12) ? name[0] : name[n];
 }
 ```
+
+- [Exercise 5.8 - Day of year and month day](./chapter05/05_08_date_functions.c)
+- [Exercise 5.9 - Rewrite day functions with pointers](./chapter05/05_09_date_pointers.c)
 
 ## 5.9 Pointers vs. Multi-dimensional Arrays
 
@@ -287,6 +245,8 @@ int main(int argc, char *argv[]) {
     return 0;
 }
 ```
+
+- [Exercise 5.10 - Reverse Polish calculator with getline](./chapter05/05_10_rpn_getline.c)
 
 ## 5.11 Pointers to Functions
 
@@ -364,18 +324,6 @@ int main() {
 }
 ```
 
-## Exercises
-
-- [Exercise 5.1 - getint with pointer](./chapter05/05_01_getint.c)
-- [Exercise 5.2 - getfloat function](./chapter05/05_02_getfloat.c)
-- [Exercise 5.3 - strcat with pointers](./chapter05/05_03_strcat.c)
-- [Exercise 5.4 - strend function](./chapter05/05_04_strend.c)
-- [Exercise 5.5 - strncpy, strncat, strncmp](./chapter05/05_05_strn_functions.c)
-- [Exercise 5.6 - Rewrite getline with pointers](./chapter05/05_06_getline_pointers.c)
-- [Exercise 5.7 - Read lines into array of pointers](./chapter05/05_07_readlines.c)
-- [Exercise 5.8 - Day of year and month day](./chapter05/05_08_date_functions.c)
-- [Exercise 5.9 - Rewrite day functions with pointers](./chapter05/05_09_date_pointers.c)
-- [Exercise 5.10 - Reverse Polish calculator with getline](./chapter05/05_10_rpn_getline.c)
 - [Exercise 5.11 - Modify entab and detab](./chapter05/05_11_entab_detab.c)
 - [Exercise 5.12 - Extend entab and detab](./chapter05/05_12_entab_detab_ext.c)
 - [Exercise 5.13 - Tail program](./chapter05/05_13_tail.c)

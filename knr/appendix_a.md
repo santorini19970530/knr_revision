@@ -84,6 +84,8 @@ String literals are sequences of characters surrounded by double quotes.
 string"
 ```
 
+- [Exercise A.1 - Lexical analyzer](./appendix_a/a_01_lexer.c)
+
 ## A.3 Syntax Notation
 
 The syntax is specified using a notation similar to BNF (Backus-Naur Form):
@@ -198,100 +200,101 @@ string       /* string literal */
 ### A.7.3 Postfix Expressions
 
 ```c
-expression[expression]    /* subscripting */
+expression[expression]    /* array subscript */
 expression(expression-list) /* function call */
 expression.identifier     /* structure member */
 expression->identifier    /* structure pointer member */
-expression++             /* postfix increment */
-expression--             /* postfix decrement */
+expression++              /* postfix increment */
+expression--              /* postfix decrement */
 ```
 
 ### A.7.4 Unary Operators
 
 ```c
-++expression             /* prefix increment */
---expression             /* prefix decrement */
-&expression              /* address of */
-*expression              /* indirection */
-+expression              /* unary plus */
--expression              /* unary minus */
-~expression              /* bitwise complement */
-!expression              /* logical negation */
-sizeof expression        /* size of object */
-sizeof(type-name)        /* size of type */
-(type-name) expression   /* cast */
+++expression              /* prefix increment */
+--expression              /* prefix decrement */
+&expression               /* address of */
+*expression               /* indirection */
++expression               /* unary plus */
+-expression                /* unary minus */
+~expression               /* bitwise complement */
+!expression               /* logical negation */
+sizeof expression         /* size of object */
+sizeof(type-name)         /* size of type */
 ```
 
 ### A.7.5 Casts
 
-A cast expression has the form `(type-name) expression`.
+```c
+(type-name) expression
+```
 
 ### A.7.6 Multiplicative Operators
 
 ```c
-expression * expression   /* multiplication */
-expression / expression   /* division */
-expression % expression   /* remainder */
+expression * expression    /* multiplication */
+expression / expression    /* division */
+expression % expression    /* remainder */
 ```
 
 ### A.7.7 Additive Operators
 
 ```c
-expression + expression   /* addition */
-expression - expression   /* subtraction */
+expression + expression    /* addition */
+expression - expression    /* subtraction */
 ```
 
 ### A.7.8 Shift Operators
 
 ```c
-expression << expression  /* left shift */
-expression >> expression  /* right shift */
+expression << expression   /* left shift */
+expression >> expression   /* right shift */
 ```
 
 ### A.7.9 Relational Operators
 
 ```c
-expression < expression   /* less than */
-expression > expression   /* greater than */
-expression <= expression  /* less than or equal */
-expression >= expression  /* greater than or equal */
+expression < expression    /* less than */
+expression > expression    /* greater than */
+expression <= expression   /* less than or equal */
+expression >= expression   /* greater than or equal */
 ```
 
 ### A.7.10 Equality Operators
 
 ```c
-expression == expression  /* equal */
-expression != expression  /* not equal */
+expression == expression   /* equal */
+expression != expression   /* not equal */
 ```
 
 ### A.7.11 Bitwise AND Operator
 
 ```c
-expression & expression   /* bitwise AND */
+expression & expression
 ```
 
 ### A.7.12 Bitwise Exclusive OR Operator
 
 ```c
-expression ^ expression   /* bitwise XOR */
+expression ^ expression
 ```
 
 ### A.7.13 Bitwise Inclusive OR Operator
 
 ```c
-expression | expression   /* bitwise OR */
+expression | expression
 ```
 
 ### A.7.14 Logical AND Operator
 
 ```c
-expression && expression  /* logical AND */
+expression && expression
 ```
 
 ### A.7.15 Logical OR Operator
 
 ```c
-expression || expression  /* logical OR */
+expression || expression
 ```
 
 ### A.7.16 Conditional Operator
@@ -322,22 +325,33 @@ expression |= expression
 expression , expression
 ```
 
-### A.7.19 Constant Expressions
-
-A constant expression is evaluated at compile time.
-
 ## A.8 Declarations
 
 ### A.8.1 Storage Class Specifiers
 
 ```c
-auto register static extern typedef
+auto
+register
+static
+extern
+typedef
 ```
 
 ### A.8.2 Type Specifiers
 
 ```c
-void char short int long float double signed unsigned
+void
+char
+short
+int
+long
+float
+double
+signed
+unsigned
+struct-or-union-specifier
+enum-specifier
+typedef-name
 ```
 
 ### A.8.3 Structure and Union Declarations
@@ -386,6 +400,8 @@ typedef type-specifier declarator
 ### A.8.10 Type Equivalence
 
 Two type declarations are equivalent if they are the same.
+
+- [Exercise A.2 - Preprocessor implementation](./appendix_a/a_02_preprocessor.c)
 
 ## A.9 Statements
 
@@ -535,10 +551,6 @@ __STDC__    /* 1 if ANSI conforming */
 
 The complete grammar for the C language as defined by the ANSI standard.
 
-## Exercises
-
-- [Exercise A.1 - Lexical analyzer](./appendix_a/a_01_lexer.c)
-- [Exercise A.2 - Preprocessor implementation](./appendix_a/a_02_preprocessor.c)
 - [Exercise A.3 - Type checker](./appendix_a/a_03_typechecker.c)
 - [Exercise A.4 - Expression evaluator](./appendix_a/a_04_evaluator.c)
 - [Exercise A.5 - Declaration parser](./appendix_a/a_05_decl_parser.c) 

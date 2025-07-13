@@ -74,6 +74,9 @@ double atof(char s[]) {
 double atof(char s[]);
 ```
 
+- [Exercise 4.1 - Rightmost occurrence of substring](./chapter04/04_01_strrindex.c)
+- [Exercise 4.2 - Extend atof to handle scientific notation](./chapter04/04_02_atof_scientific.c)
+
 ## 4.3 External Variables
 
 ### External Variable Declaration:
@@ -132,6 +135,10 @@ double pop(void) {
 static int buf[BUFSIZE];  /* buffer for ungetch */
 static int bufp = 0;      /* next free position in buf */
 ```
+
+- [Exercise 4.3 - Reverse Polish calculator with modulus](./chapter04/04_03_rpn_mod.c)
+- [Exercise 4.4 - Add commands to calculator](./chapter04/04_04_calc_commands.c)
+- [Exercise 4.5 - Add access to library functions](./chapter04/04_05_library_functions.c)
 
 ## 4.5 Header Files
 
@@ -204,6 +211,13 @@ if (n > 0) {
 - Variables declared in inner blocks hide outer declarations
 - Inner variables are accessible only within their block
 
+- [Exercise 4.6 - Add field width support to atof](./chapter04/04_06_atof_width.c)
+- [Exercise 4.7 - Ungetch with single character buffer](./chapter04/04_07_ungetch_single.c)
+- [Exercise 4.8 - Getch and ungetch with EOF](./chapter04/04_08_getch_eof.c)
+- [Exercise 4.9 - Handle pushed-back EOF](./chapter04/04_09_eof_handling.c)
+- [Exercise 4.10 - Alternative getch implementation](./chapter04/04_10_getch_alt.c)
+- [Exercise 4.11 - Modify getop to use ungetch](./chapter04/04_11_getop_ungetch.c)
+
 ## 4.9 Initialization
 
 ### Array Initialization:
@@ -255,6 +269,9 @@ void qsort(int v[], int left, int right) {
     qsort(v, last+1, right);
 }
 ```
+
+- [Exercise 4.12 - Recursive itoa](./chapter04/04_12_itoa_recursive.c)
+- [Exercise 4.13 - Recursive reverse](./chapter04/04_13_reverse_recursive.c)
 
 ## 4.11 The C Preprocessor
 
@@ -314,19 +331,4 @@ void qsort(int v[], int left, int right) {
 #include HDR
 ```
 
-## Exercises
-
-- [Exercise 4.1 - Rightmost occurrence of substring](./chapter04/04_01_strrindex.c)
-- [Exercise 4.2 - Extend atof to handle scientific notation](./chapter04/04_02_atof_scientific.c)
-- [Exercise 4.3 - Reverse Polish calculator with modulus](./chapter04/04_03_rpn_mod.c)
-- [Exercise 4.4 - Add commands to calculator](./chapter04/04_04_calc_commands.c)
-- [Exercise 4.5 - Add access to library functions](./chapter04/04_05_library_functions.c)
-- [Exercise 4.6 - Add field width support to atof](./chapter04/04_06_atof_width.c)
-- [Exercise 4.7 - Ungetch with single character buffer](./chapter04/04_07_ungetch_single.c)
-- [Exercise 4.8 - Getch and ungetch with EOF](./chapter04/04_08_getch_eof.c)
-- [Exercise 4.9 - Handle pushed-back EOF](./chapter04/04_09_eof_handling.c)
-- [Exercise 4.10 - Alternative getch implementation](./chapter04/04_10_getch_alt.c)
-- [Exercise 4.11 - Modify getop to use ungetch](./chapter04/04_11_getop_ungetch.c)
-- [Exercise 4.12 - Recursive itoa](./chapter04/04_12_itoa_recursive.c)
-- [Exercise 4.13 - Recursive reverse](./chapter04/04_13_reverse_recursive.c)
 - [Exercise 4.14 - Swap macro](./chapter04/04_14_swap_macro.c) 

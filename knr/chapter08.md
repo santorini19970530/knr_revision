@@ -2,15 +2,8 @@
 
 ## 8.1 File Descriptors
 
-### File Descriptors:
-- `0` - standard input (stdin)
-- `1` - standard output (stdout)
-- `2` - standard error (stderr)
-
-### Low-level I/O:
+### File Descriptor Operations:
 ```c
-#include <fcntl.h>
-
 int open(char *name, int flags, int perms);
 int creat(char *name, int perms);
 int close(int fd);
@@ -18,10 +11,15 @@ int read(int fd, char *buf, int n);
 int write(int fd, char *buf, int n);
 ```
 
+### File Descriptors:
+- `0` - standard input
+- `1` - standard output
+- `2` - standard error
+
 ### Example - File Copy:
 ```c
-#include <stdio.h>
 #include <fcntl.h>
+#include <unistd.h>
 
 #define BUFSIZE 1024
 
@@ -30,23 +28,29 @@ int main(int argc, char *argv[]) {
     char buf[BUFSIZE];
     
     if (argc != 3) {
-        fprintf(stderr, "usage: %s source dest\n", argv[0]);
+        write(2, "Usage: cp from to\n", 18);
         return 1;
     }
     
     if ((fd1 = open(argv[1], O_RDONLY, 0)) == -1) {
-        fprintf(stderr, "can't open %s\n", argv[1]);
+        write(2, "cp: can't open ", 14);
+        write(2, argv[1], strlen(argv[1]));
+        write(2, "\n", 1);
         return 1;
     }
     
     if ((fd2 = creat(argv[2], 0644)) == -1) {
-        fprintf(stderr, "can't create %s\n", argv[2]);
+        write(2, "cp: can't create ", 17);
+        write(2, argv[2], strlen(argv[2]));
+        write(2, "\n", 1);
         return 1;
     }
     
     while ((n = read(fd1, buf, BUFSIZE)) > 0)
         if (write(fd2, buf, n) != n) {
-            fprintf(stderr, "write error\n");
+            write(2, "cp: write error on ", 18);
+            write(2, argv[2], strlen(argv[2]));
+            write(2, "\n", 1);
             return 1;
         }
     
@@ -69,23 +73,12 @@ int write(int fd, char *buf, int n);
 ```
 
 ### Return Values:
-- `read` returns number of bytes read, 0 for EOF, -1 for error
-- `write` returns number of bytes written, -1 for error
+- Returns number of bytes read/written
+- Returns 0 on end of file (read)
+- Returns -1 on error
 
-### Example - Character Copy:
-```c
-#include <stdio.h>
-#include <unistd.h>
-
-int main() {
-    char buf[1];
-    int n;
-    
-    while ((n = read(0, buf, 1)) > 0)
-        write(1, buf, 1);
-    return 0;
-}
-```
+- [Exercise 8.1 - Rewrite read and write with error handling](./chapter08/08_01_rw_error.c)
+- [Exercise 8.2 - Rewrite fopen and getc with buffering](./chapter08/08_02_fopen_buf.c)
 
 ## 8.3 Open, Creat, Close, Unlink
 
@@ -95,108 +88,45 @@ int open(char *name, int flags, int perms);
 ```
 
 ### Flags:
+- `O_RDONLY` - read only
+- `O_WRONLY` - write only
+- `O_RDWR` - read and write
+- `O_CREAT` - create if doesn't exist
+- `O_TRUNC` - truncate if exists
+- `O_APPEND` - append mode
+
+### Creat Function:
 ```c
-O_RDONLY    open for reading only
-O_WRONLY    open for writing only
-O_RDWR      open for reading and writing
-O_CREAT     create file if it doesn't exist
-O_TRUNC     truncate file to zero length
-O_APPEND    append to file
+int creat(char *name, int perms);
 ```
 
 ### Permissions:
-```c
-0644    owner read/write, group read, others read
-0755    owner read/write/execute, group read/execute, others read/execute
-```
-
-### Example - File Operations:
-```c
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-
-int main() {
-    int fd;
-    
-    /* Create file */
-    fd = creat("test.txt", 0644);
-    if (fd == -1) {
-        perror("creat");
-        return 1;
-    }
-    close(fd);
-    
-    /* Open for writing */
-    fd = open("test.txt", O_WRONLY | O_APPEND, 0);
-    if (fd == -1) {
-        perror("open");
-        return 1;
-    }
-    
-    write(fd, "Hello, World!\n", 14);
-    close(fd);
-    
-    /* Remove file */
-    unlink("test.txt");
-    return 0;
-}
-```
+- `0644` - owner read/write, group/other read
+- `0755` - owner read/write/execute, group/other read/execute
 
 ## 8.4 Random Access - Lseek
 
 ### Lseek Function:
 ```c
-#include <unistd.h>
-
 long lseek(int fd, long offset, int origin);
 ```
 
 ### Origins:
+- `SEEK_SET` - beginning of file
+- `SEEK_CUR` - current position
+- `SEEK_END` - end of file
+
+### Example:
 ```c
-SEEK_SET    beginning of file
-SEEK_CUR    current position
-SEEK_END    end of file
+lseek(fd, 0L, SEEK_SET);  /* go to beginning */
+lseek(fd, 0L, SEEK_END);  /* go to end */
+lseek(fd, posn, SEEK_SET); /* go to posn */
 ```
 
-### Example - Random Access:
-```c
-#include <stdio.h>
-#include <fcntl.h>
-#include <unistd.h>
-
-int main() {
-    int fd;
-    char buf[100];
-    
-    fd = open("file.txt", O_RDWR, 0);
-    if (fd == -1) {
-        perror("open");
-        return 1;
-    }
-    
-    /* Seek to position 10 */
-    lseek(fd, 10L, SEEK_SET);
-    
-    /* Read 10 bytes */
-    read(fd, buf, 10);
-    buf[10] = '\0';
-    printf("Read: %s\n", buf);
-    
-    /* Seek to end and append */
-    lseek(fd, 0L, SEEK_END);
-    write(fd, "Appended text\n", 14);
-    
-    close(fd);
-    return 0;
-}
-```
-
-## 8.5 Example - An implementation of Fopen and Getc
+## 8.5 Example - An Implementation of Fopen and Getc
 
 ### Fopen Implementation:
 ```c
-#include <stdio.h>
 #include <fcntl.h>
 #include <unistd.h>
 #include <stdlib.h>
@@ -318,6 +248,8 @@ void dirwalk(char *dir, void (*fcn)(char *)) {
 }
 ```
 
+- [Exercise 8.3 - Directory listing with file types](./chapter08/08_03_dir_types.c)
+
 ## 8.7 Example - A Storage Allocator
 
 ### Memory Allocator:
@@ -406,11 +338,6 @@ void free(void *ap) {
 }
 ```
 
-## Exercises
-
-- [Exercise 8.1 - Rewrite read and write with error handling](./chapter08/08_01_rw_error.c)
-- [Exercise 8.2 - Rewrite fopen and getc with buffering](./chapter08/08_02_fopen_buf.c)
-- [Exercise 8.3 - Directory listing with file types](./chapter08/08_03_dir_types.c)
 - [Exercise 8.4 - Memory allocator with best-fit](./chapter08/08_04_best_fit.c)
 - [Exercise 8.5 - Memory allocator with first-fit](./chapter08/08_05_first_fit.c)
 - [Exercise 8.6 - Memory allocator with boundary tags](./chapter08/08_06_boundary.c)
